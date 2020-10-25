@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Crop: A Plant Disease Identifier</title>
+  <meta charset="utf-8">
+  <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+    $(function () {
+      $(document).scroll(function () {
+        var $nav = $(".navbar-fixed-top");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+      });
+    });
+    
+  </script>
+  <style>
+    body {
+      font: 20px  sans-serif;
+      line-height: 1.8;
+      padding-top: 0px;
+      color: #f5f6f7;
+    }
+    .every:hover {
+      background-color: rgba(76, 175, 80, 0.3);
+      border-radius: 30px;
+      transition-duration:0.5s;
+      letter-spacing: 5px;
+      font-size: 2em;
+
+    }
+
+    .inline {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    .margin {
+      margin-bottom: 25px;
+    }
+
+    .footer {
+      width: 100%;
+      background-color: darkslategrey;
+      color: white;
+      text-align: center;
+    }
+
+    .bg-1 {
+      background-color: #1abc9c;
+      /* Green */
+      color: #ffffff;
+    }
+
+    .bg-2 {
+      background-color: #474e5d;
+      /* Dark Blue */
+      color: #ffffff;
+    }
+
+    .bg-3 {
+      background-color: #ffffff;
+      /* White */
+      color: #555555;
+    }
+
+    .bg-4 {
+      background-color: #2f2f2f;
+      /* Black Gray */
+      color: #fff;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 28px;
+      border-radius: 10px;
+    }
+
+    .navbar li:hover,
+    :focus {
+      background-color: #fff;
+      color: green;
+      text-decoration: underline;
+    }
+
+    #footer-area {
+      padding: 20px 0 20px 0;
+      background: #262626;
+      color: #fff;
+    }
+
+    .single-footer h3 {
+      margin-bottom: 15px;
+      color: #fafafa;
+    }
+
+    .footer-social li a {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+    }
+
+    .fa {
+      font-size: 30px;
+      width: 30px;
+      text-align: center;
+      color: black;
+      border-radius: 50%;
+    }
+
+    .photo {
+      border-radius: 20px;
+
+    }
+
+    .container-fluid {
+      height: auto;
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+
+    .container-fluid1 {
+      height: auto;
+      padding-top: 100px;
+      padding-bottom: 15px;
+    }
+
+    .container-fluid2 {
+      height: auto;
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+
+    .container-fluids {
+      height: auto;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border-left: 5px;
+      border-right: 5px;
+    }
+
+    .navbar-fixed-top.scrolled {
+      background-color: whitesmoke !important;
+      transition: background-color 10ms;
+    }
+
+    #cent {
+      text-align: center;
+      margin: auto;
+    }
+
+    input[type=file] {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar-default navbar-fixed-top navbar-expand-lg  navbar-dark" style="background-color: white;">
+    <div class="container-fluids" style="color:unset;">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="" href="#" style="height: 100px; width: 200px;">
+          <img src="../static/img/l1.png" alt="" style="height: 70px; width: 150px;">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar" style="color: black; scrollbar-highlight-color: green;">
+        <ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
+          <li><a href="#Do" style="font-size: x-large;color: black;">What not to do!!</a></li>
+          <li><a href="#Diseases" style="font-size: x-large;color: black;">Few Diseases</a></li>
+          <li><a href="#Me" style="font-size: x-large;color: black;">About us</a></li>
+          <li><a href="">
+              <img src="../static/img/me.png" class="avatar img-fluid">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- First Container -->
+  <div class="container-fluid1 bg-2 text-center"
+    style="background-repeat: repeat;background-size:cover;background-clip: border-box;background-image:url(../static/img/farmer.jpg)">
+    <br>
+    <br>
+    <h3 class="every" style="font-size: 50px;font-weight: bold; color:floralwhite;text-align:center;text-underline-position: auto;margin:20px;">
+      Everyone can be a Botanist</h3>
+    <br>
+    <p style="font-weight: bold;font-size: 22px; color:white;text-align: center;">Wanna know how? Just click on Get Started!</p>
+    <br>
+    <a href="#collapseExample" data-toggle="collapse" class="btn btn-danger btn-lg"
+      style="border-radius: 10px;width: 150px;border-color:white;border-width: 1px;color:white;border-style: groove ;background-color:#8b62ff;">
+      <span class="glyphicon glyphicon-leaf"></span> Get started!
+    </a>
+    <br>
+    <br>
+    <!-- <p style="color:limegreen;font-weight: bolder;text-align: center;font-size: 30px;">{{Error}}</p> -->
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+          <input type="file" class="btn" name="image"
+            style="font-size: 20px;font-weight: bolder;color: black;border-radius: 10px;" accept="image/*" required>
+          <input type="submit" class="btn" 
+            style="font-size: 20px;font-weight: bolder;color: black;border-radius: 10px;">
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Second Container-->
+  <div class="container-fluid bg-3 text-center" style="color: black;margin:60px">
+    <h2 style="font-weight: bolder;border-radius: 20px;">What not to do ?</h2>
+    <hr style="border: 5px solid darkslategrey; border-radius: 20px;width: 150px;display: block;">
+    <div class="row" id="Do">
+      <div class="col-sm-6">
+        <h2>Do's</h2>
+        <div style="height: 10px;"></div>
+        <img src="../static/img/one_leaf.png" class="img-fluid margin"
+          style="width:100%;height:400px;border-radius: 10px;display:block " alt="Image">
+        <p style="text-align: center;font-weight: bolder;">The Algorithm works well with single leaf at a time, so try
+          uploading images with one leaf
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <h2>Don'ts</h2>
+        <div style="height: 10px;"></div>
+        <img src="../static/img/more_leaves.jpg" class="img-fluid margin"
+          style="width:100%;height:400px;border-radius: 10px;display: block;" alt="Image">
+        <p style="text-align: center;font-weight: bolder;">The Algorithm won't predict when more leaves in one image, it
+          is good at predicting one leaf at a time </p>
+      </div>
+    </div>
+  </div>
+  <!-- Third Container (Grid) -->
+  <div class="container-fluid bg-3 text-center" style="color: black;margin:70px;">
+    <h2 style="font-weight: bolder;border-radius: 20px;">Now identifying about your plant is not a difficult task.</h2>
+    <h5>Simply take or upload a photo of any plant, and get instantaneous and accurate plant ID results with our technology.</h5>
+    <hr style="border: 5px solid darkslategrey; border-radius: 20px;width: 150px;">
+    <div class="row" id="Diseases">
+      <div class="col-sm-4">
+        <h2>Our Initative</h2>
+        <div style="height: 10px;"></div>
+        <img src="../static/img/team1.jpg" class="img-fluid margin"
+          style="width:100%;height:auto;border-radius: 10px;" alt="Image">
+        <p style="text-align: justify">Through the application of artificial intelligence (AI) and machine learning (ML), growers can access increasingly sophisticated data and analytics tools, which enables better decisions, improved efficiencies, and reduced waste in food and biofuel production, all while minimizing negative environmental consequences.
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <h2>Message</h2>
+        <div style="height: 10px;"></div>
+        <img src="../static/img/i3.jpg" class="img-fluid margin" style="width:100%;border-radius: 10px;"
+          alt="Image">
+        <p style="text-align: justify;">Old days of hard and not always profitable human labor is over, Smart Farming powered by Machine Learning with its high-precision algorithms is a new concept emerging today. We together are trying to make world realise the importance of knowing about plants,its seeds and its diseases. So that, we can take care of them as they do of ours.</p>
+      </div>
+      <div class="col-sm-4">
+        <h2>Its happening..</h2>
+        <div style="height: 10px;"></div>
+        <img src="../static/img/team2.jpg" class="img-fluid margin"
+          style="width:100%;height:280px;border-radius: 10px;" alt="Image">
+        <p style="text-align: justify;">Farming goes digital and now we are observing 4th Agricultural Revolution. Everyday machines learn to solve complicated tasks, and they are doing it better with time. 
+        </p>
+      </div>
+    </div>
+  </div>
+  <!--Last Container-->
+  <!-- <div class="container-fluid2 " style="color: black;" id="Me">
+    <h2 style="font-weight: bolder;border-radius: 20px;text-align: center;">About the Team</h2>
+    <hr style="border: 5px solid darkslategrey; border-radius: 20px;width: 150px;">
+    <div style="color:white;">
+      <div id="footer-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="single-footer" style="align-content: left;">
+                <h1 style="font-size:20px;font-weight: bolder;letter-spacing: 3px;font-style: italic;">THE COLLIDERS</h1>
+                <p style="font-size:10px;text-align: justify;font-style: italic;"> Looking forward and trying to make a change.</p>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="single-footer" style="background-color:#8b62ff;border-radius: 20px; ">
+                <h1 style="font-weight: bolder;font-size: 30px;letter-spacing: 4px;text-align: center;padding: 10px">THE COLLIDERS</h1>
+                <p style="text-align:justify;padding:20px"> We ( Vaibhav Joshi , Manglam Tripathi, Tarit Jaiswal) students of VIT Bhopal University pursuing B.Tech in Computer Science With Specialisation in Artificial intelligence And Machine Learning are trying to make life more easy and more comfortable with the help of knowledge and technology that has been granted to us.</p>
+                
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <footer id="Me"  >
+    <div class="section-container footer-container" style="margin: auto; ">
+      <h2 style="font-weight: bolder;border-radius: 20px;text-align: center;color: black;">About us</h2>
+      <hr style="border: 5px solid darkslategrey; border-radius: 20px;width: 150px;">
+        <div class="container" style="padding: 10px;margin-bottom: 60px;margin: auto;">
+            <div class="row">
+                    <div class="col-md-4" ">
+                        <h4 style="color:black;"><em><strong>The Colliders</strong> </em></h4>
+                        <p style="color: black;">Looking forward and trying to make a change.</p>
+                    </div>
+
+
+
+                    </div>
+            </div>
+        </div>
+        <div>
+          <p style="padding: 20px;color:white;margin: 60px;background-color: #3ca719;border-radius: 20px;"> We ( Vaibhav Joshi , Manglam Tripathi, Tarit Jaiswal) students of VIT Bhopal University pursuing B.Tech in Computer Science With Specialisation in Artificial intelligence And Machine Learning are trying to make life more easy and more comfortable with the help of knowledge and technology that has been granted to us.</p>
+        </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
