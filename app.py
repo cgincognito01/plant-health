@@ -25,8 +25,7 @@ loaded_json.close()
 loaded_model = model_from_json(loaded_json_read)
 # load weights
 #loaded_model.load_weights("weights.h5")
-model_path = os.path.abspath("crop1.h5")
-model = load_model(model_path) 
+model = load_model("model/crop1.h5") 
 
 #model = tf.keras.models.load_model("model/crop1.h5")
 global graph
