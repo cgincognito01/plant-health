@@ -11,8 +11,6 @@ from tensorflow.keras.models import load_model, model_from_json
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 
-print(tf.__version__)
-
 # Flask utils
 from flask import Flask, url_for, render_template, request,send_from_directory,redirect
 from werkzeug.utils import secure_filename
@@ -40,27 +38,6 @@ def info():
     cursor.execute("SELECT * FROM disease")
     rows = cursor.fetchall()
     return rows
-"""
-def leaf_predict(img_path):
-    # load image with target size
-    img = image.load_img(img_path, target_size=(256, 256))
-    # convert to array
-    img = image.img_to_array(img)
-    # normalize the array
-    img /= 255
-    # expand dimensions for keras convention
-    img = np.expand_dims(img, axis=0)
-    
-    with graph.as_default():
-        opt = keras.optimizers.Adam(lr=0.001)
-        model.compile(optimizer=opt, loss='mse')
-        preds = model.predict(img)
-        dist = np.linalg.norm(img - preds)
-        if dist <= 20:
-            return "leaf"
-        else:
-            return "not leaf"
-"""
 
 def model_predict(img_path):
     # load image with target size
